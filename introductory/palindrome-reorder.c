@@ -31,8 +31,8 @@ int main() {
         }
     }
 
-    for (int i = l; i <= r; i++) {
-        a[i] = 'A' + odd_idx;
+    for (; l <= r; l++) {
+        a[l] = 'A' + odd_idx;
     }
 
     a[len] = '\0';
