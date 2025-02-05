@@ -15,11 +15,9 @@ int main() {
 
     for (int j = n - 1; j >= 0; j--) {
         int mid = 1 << (n - j - 1);
-        for (int i = 0; i < (1 << (n - j)); i++) {
-            if (i >= mid) {
-                memcpy(a[i], a[mid - (i - mid + 1)], n * sizeof(int));
-                a[i][j] = 1;
-            }
+        for (int i = mid; i < (1 << (n - j)); i++) {
+            memcpy(a[i], a[mid - (i - mid + 1)], n * sizeof(int));
+            a[i][j] = 1;
         }
     }
 
