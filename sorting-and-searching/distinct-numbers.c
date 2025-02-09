@@ -14,12 +14,10 @@ int main() {
         int c;
         scanf("%d", &c);
 
-        int div = c / 32;
-        int mod = c % 32;
+        int div = c / 32, mod = c % 32;
         if (!((seen[div] >> 32 - mod) & 1)) {
             res++;
-            int mark = 1 << (32 - mod);
-            seen[div] |= mark;
+            seen[div] |= (1 << (32 - mod));
         }
     }
 
