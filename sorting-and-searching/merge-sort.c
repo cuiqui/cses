@@ -9,17 +9,16 @@ void merge(int arr[], int l, int m1, int m2, int r, int tmp[]) {
 }
 
 void msort(int arr[], int l, int r, int tmp[]) {
-    if (l < r) {
-        int m = (l + r) / 2;
-        msort(arr, l, m, tmp);
-        msort(arr, m + 1, r, tmp);
-        merge(arr, l, m, m + 1, r, tmp + l);
-        memcpy(arr + l, tmp + l, (r - l + 1) * sizeof(int));
-    }
+    if (r <= l) return;
+    int m = (l + r) / 2;
+    msort(arr, l, m, tmp);
+    msort(arr, m + 1, r, tmp);
+    merge(arr, l, m, m + 1, r, tmp + l);
+    memcpy(arr + l, tmp + l, (r - l + 1) * sizeof(int));
 }
 
 void sort(int arr[], int l, int r) {
-    int *tmp = (int*)malloc((r - l) * sizeof(int));
+    int *tmp = (int*)malloc((r - l + 1) * sizeof(int));
     msort(arr, l, r, tmp);
     free(tmp);
 }
