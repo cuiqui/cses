@@ -2,11 +2,10 @@
 #include <string.h>
 #include <stdlib.h>
 
-void merge(int arr[], int l, int m, int r, int tmp[]) {
-    int i = l, j = m + 1;
-    while (l <= m && j <= r) tmp[i++] = arr[l] < arr[j] ? arr[l++] : arr[j++];
-    while (l <= m) tmp[i++] = arr[l++];
-    while (j <= r) tmp[i++] = arr[j++];
+void merge(int arr[], int l, int m1, int m2, int r, int tmp[]) {
+    while (l <= m1 && m2 <= r) *tmp++ = arr[l] < arr[m2] ? arr[l++] : arr[m2++];
+    while (l <= m1) *tmp++ = arr[l++];
+    while (m2 <= r) *tmp++ = arr[m2++];
 }
 
 void msort(int arr[], int l, int r, int tmp[]) {
@@ -14,7 +13,7 @@ void msort(int arr[], int l, int r, int tmp[]) {
         int m = (l + r) / 2;
         msort(arr, l, m, tmp);
         msort(arr, m + 1, r, tmp);
-        merge(arr, l, m, r, tmp);
+        merge(arr, l, m, m + 1, r, tmp + l);
         memcpy(arr + l, tmp + l, (r - l + 1) * sizeof(int));
     }
 }
