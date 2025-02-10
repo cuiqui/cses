@@ -39,14 +39,9 @@ int main() {
 
     int res = 0, i = 0, j = n - 1;
     while (i < j) {
-        if (p[i] + p[j] <= x) {
-            i++;
-            j--;
-            res++;
-        } else {
-            j--;
-            res++;
-        }
+        if (p[i] + p[j] <= x) i++;
+        j--;
+        res++;
         if (i == j) res++;
     }
 
